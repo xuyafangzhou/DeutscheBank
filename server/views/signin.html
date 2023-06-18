@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/css/signin.css"> -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/api.js"></script>
+    <title>Sign In</title>
+</head>
+<body>
+    <div class="container position-absolute top-50 start-50 translate-middle text-center" style="width: 400px;">
+        <div id="bg-light">
+          <h1 class="display-6" style="font-family: Montserrat;">Sign In</h1>
+            <span>Don't have an account yet? </span><a id="signinspan"
+              style="font-style:normal;font-weight:bold;color:rgba(35,57,117,1);">Sign Up</a>
+          <div id="inputarea" class="container align-middle d-grid gap-3 mt-3">
+            <div class="input-group has-validation">
+              <input type="text" id="email_address" class="form-control" placeholder="Email Address"
+                aria-label="email_address" aria-describedby="empty_email_address" required="">
+            </div>
+            <div class="input-group has-validation">
+                <input type="password" id="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="empty_password" required="">
+            </div>
+            <div class="flex-nowrap">
+              <button type="button" id="sign-in-button" class="btn btn-outline-primary" style="width: 327px;">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+
+<script>
+    $('#sign-in-button').click(function() {
+        $('#empty_password').remove();
+        $('#login_issue').remove();
+        $('#password').removeClass("is-invalid");
+        $('#empty_email_address').remove();
+        $('#email_address').removeClass("is-invalid");
+
+        let emailaddress = $('#email_address').val();
+        let password = $('#password').val();
+
+        if (emailaddress === "") {
+          $('#email_address').addClass("is-invalid");
+          $('#email_address').after(`
+           <div id='empty_email_address' class='invalid-feedback'>
+            Email address cannot be empty!
+            </div>
+          `);
+          return;
+        }
+
+        if (password === "") {
+          $('#password').addClass("is-invalid");
+          $('#password').after(`
+           <div id='empty_password' class='invalid-feedback'>
+            Password cannot be empty!
+            </div>
+          `);
+          return;
+        }
+        
+        login(emailaddress, password, 
+            ()=>{
+                // alert("Success");
+                window.location.href='/';
+            }, 
+            (message)=>{
+                // alert(message);
+                $('#password').addClass("is-invalid");
+                $('#password').after(`
+                    <div id='login_issue' class='invalid-feedback'>
+                        ${message}
+                    </div>
+                `);
+            }
+        );
+    });
+</script>
+<script>
+    $('#signinspan').click(function () {
+        window.location.replace('/signup.html');
+    });
+</script>
+</html>

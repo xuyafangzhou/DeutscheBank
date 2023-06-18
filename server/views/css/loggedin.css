@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+  
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+   
+.sidebar a.active {
+    background-color: rgb(69, 89, 143);
+    color: white;
+}
+  
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#logoutButton:hover {
+    cursor: pointer;
+}
+
+#content {
+    margin-left: 200px;
+    padding: 16px 16px;
+    height: auto;
+}
+  
+.eventbox {
+    display: inline-block;
+    width: 300px;
+    height: 200px;
+    margin: 0;
+    left: 0;
+    padding: 0;
+    background-color: rgb(252, 249, 247);
+    text-align: center;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-size: 25px;
+    box-shadow: 5px 5px rgb(173, 172, 172);
+    position: relative;
+}
+
+.eventbox:hover {
+    cursor: pointer;
+    background-color: rgba(247, 242, 242, 0.863);
+}
+
+.eventname {
+    margin: 0;
+    display: contents;
+}
+
+.time {
+    display: block;
+    text-align: left;
+}
+
+.rating {
+    display: block;
+    text-align: left;
+}
+
+.deletebutton {
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
+    margin: auto;
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+    overflow: visible;
+    background-color: rgb(69, 89, 143);
+    color: rgba(255,255,255,1);
+    white-space: nowrap;
+    line-height: 15px;
+    margin-top: -1.5px;
+    text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(255,255,255,1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    #content {margin-left: 0;}
+    .eventbox {
+        margin-bottom: 30px;
+        position: relative;
+        left: auto;
+        width: 350px;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+    .eventbox {
+        margin-bottom: 20px;
+        position: relative;
+        margin-left: 0;
+        left: 0;
+        width: 100%;
+    }
+}

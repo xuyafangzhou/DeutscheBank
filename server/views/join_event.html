@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/api.js"></script>
+    <title>Join Event</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/events/create">New Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="logoutButton">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container position-absolute top-50 start-50 translate-middle text-center" style="width: 400px;">
+        <div id="bg-light">
+          <h1 class="display-6" style="font-family: Montserrat;">Join an Event</h1>
+          <div class="container align-middle d-grid gap-3 mt-3">
+            <div class="input-group has-validation">
+              <input type="text" id="meeting_ID" class="form-control" placeholder="Event Code(X digit number)" aria-describedby="empty_event_code" required="">
+            </div>
+            <div class="flex-nowrap align-middle">
+              <button type="button" id="joinMeetingBtn" class="btn btn-primary" style="width: 327px;">Join</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+
+<script>
+    $('#joinMeetingBtn').click(function() {
+        $('#empty_event_code').remove();
+        $('#meeting_ID').removeClass("is-invalid");
+        let id = $('#meeting_ID').val();
+        if (id === "") {
+            $('#meeting_ID').addClass("is-invalid");
+          $('#meeting_ID').after(`
+           <div id='empty_event_code' class='invalid-feedback'>
+            Event code cannot be empty!
+            </div>
+          `);
+          return;
+        }
+        joinEvent($("#meeting_ID").val(),()=>{
+            window.location.href='/'
+        }, (message)=>{
+            $('#meeting_ID').addClass("is-invalid");
+          $('#meeting_ID').after(`
+           <div id='empty_event_code' class='invalid-feedback'>
+            No event found!
+            </div>
+          `);
+        });
+    });
+    $('#logoutButton').click(function() {
+        logout(()=>{
+            window.location.href='/'
+        }, ()=>{
+            alert("Failed to logout. Please try again")
+        })
+    });
+</script>
+</html>

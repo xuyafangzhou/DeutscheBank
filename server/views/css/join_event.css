@@ -1,0 +1,155 @@
+#join {
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:400px; 
+    height:270px;   
+    margin-left:-200px;   
+    margin-top:-175px;   
+    overflow: visible;
+    background-color: rgb(252, 249, 247);
+    text-align: center;
+    box-shadow: 5px 5px rgb(173, 172, 172);
+    border-radius: 10px;
+}
+
+#join_text {
+    left: 1px;
+    top: 0px;
+    overflow: visible;
+    width: 327px;
+    white-space: nowrap;
+    line-height: 36px;
+    text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0,0,0,1);
+    margin: auto;
+}
+
+
+
+.inputdiv {
+    position: relative;
+    margin: auto;
+    width: 327px;
+    height: 71px;
+    /* left: 1px;*/
+    top: 30px; 
+    overflow: visible;
+}
+
+.label {
+    left: 0px;
+    top: 8px;
+    position: absolute;
+    overflow: visible;
+    width: 63px;
+    white-space: nowrap;
+    line-height: 18px;
+    margin-top: -3px;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0,0,0,1);
+}
+
+.inputbox {
+    width: 327px;
+    height: 38px;
+    top: 23px;
+    left: 0px;
+    position: relative;
+    border-radius: 4px;
+}
+
+#joinMeetingBtn {
+    margin: auto;
+    position: relative;
+    top: 75px;
+    left: 4px;
+    border-radius: 4px;
+    width: 327px;
+    height: 48px;
+    overflow: visible;
+    background-color: rgb(69, 89, 143);
+    color: rgba(255,255,255,1);
+    white-space: nowrap;
+    line-height: 15px;
+    margin-top: -1.5px;
+    text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(255,255,255,1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#sign-in-button:hover {
+    background-color: rgb(52, 76, 141);
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    #content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+  
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+   
+.sidebar a.active {
+    background-color: rgb(69, 89, 143);
+    color: white;
+}
+  
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#logoutButton:hover {
+    cursor: pointer;
+}
+  
+#content {
+    margin-left: 200px;
+    padding: 16px 16px;
+    height: auto;
+}

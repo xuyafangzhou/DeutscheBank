@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+  
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+   
+.sidebar a.active {
+    background-color: rgb(69, 89, 143);
+    color: white;
+}
+  
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#logoutButton:hover {
+    cursor: pointer;
+}
+  
+#content {
+    margin-left: 200px;
+    padding: 16px 16px;
+    height: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    #content {margin-left: 0;}
+}
+  
+@media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+}
+
+#eventname {
+    margin: 0;
+}
+
+#feedback {
+    vertical-align:top;
+    display: inline-block;
+    margin: 10px;
+    width: 400px;
+    height: 800px;
+    background-color:rgb(209, 187, 146);
+}
+
+#analysis {
+    vertical-align:top;
+    display: inline-block;
+    margin: 10px;
+    width: 900px;
+    height: 800px;
+    background-color:rgb(255, 255, 255);
+    border-radius: 4px;
+    box-shadow: 5px 5px rgb(173, 172, 172);
+}
+
+#feedback_navigation {
+    width: 100%;
+    position: inherit;
+    top: 0px;
+    height: 50px;
+    background-color:rgb(252, 249, 247);
+}
+
+#feedback_text {
+    position: absolute;
+    margin: 10px 0px 0px 0px;
+}
+
+#inner_feedback_div {
+    position: inherit;
+    width: 100%;
+    height: 750px;
+    margin: 0;
+    background-color: rgb(185, 185, 185);
+    overflow-y: scroll;
+}
+
+.feedback_box {
+    width: 300px;
+    height: 200px;
+    margin: 0;
+    top: 10px;
+    left: 40px;
+    padding: 0;
+    background-color: rgb(252, 249, 247);
+    text-align: center;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-size: 25px;
+    box-shadow: 5px 5px rgb(173, 172, 172);
+    position: relative;
+}
+
+.analysis_navigation {
+    position: inherit;
+    display: inline;
+    float: left;
+    top: 0;
+    width: 300px;
+    height: 60px;
+    text-align: center;
+    background-color:rgb(252, 249, 247);
+    box-sizing: border-box;
+    border-right: 2px solid black;
+    border-radius: 4px;
+}
+
+.analysis_navigation:hover {
+    cursor: pointer;
+}
+
+.analysis_navigation:hover {
+    background-color:rgb(218, 215, 214);
+}

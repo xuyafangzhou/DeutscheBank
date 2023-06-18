@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/time-diff.min.js"></script>
+    <title>Manage Event</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/events/join">Join Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/events/create">Create Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="logoutButton">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h3>Event Code: <span id="eventCode"></span></h3>
+    <div class="container d-flex justify-content-between mt-3">
+        <div class="d-flex flex-column container shadow rounded d-inline-block border border-3"
+            style="height: 50rem;width: 30rem;right: 200px;">
+            <div class="row border-bottom text-center">
+                <h3>Live Feedback</h3>
+            </div>
+            <div id="feedbackList" class="row overflow-auto d-grid gap-1">
+            </div>
+        </div>
+        <div class="container shadow rounded d-inline-block border border-3" style="width: 50rem;height: 50rem;">
+            <div class="" id="analysis">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Sentiment over Time',
+                // backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: []
+            }]
+        },
+
+        // Configuration options go here
+        options: { 
+            scales: { 
+                xAxes: [{
+                display: false,
+                type: 'linear',
+                position: 'bottom'
+            }]
+            }
+        }
+    });
+    
+    function updateFeedback() {
+        $("#eventCode").text(eventCode);
+        getFeedback(eventCode, (feedback) => {
+            $("#feedbackList").empty();
+            chart.data.datasets[0].data = [];
+            feedback.reverse().forEach(fb => {
+                console.log(fb);
+                $("#feedbackList").append(`
+                <div class="row shadow rounded mt-1 text-center ${fb.mood}">
+                    <div class="card-body">
+                        <p>Name: ${fb.name}</p>
+                        ${fb.content}
+                        <em style='font-size:80%'>(${TimeDiff(fb.updatedAt, new Date())})</em>
+                    </div>
+                </div>
+                `);
+                chart.data.datasets[0].data.push({x:new Date(fb.updatedAt), y: fb.mood})
+                
+            });
+            chart.update();
+        }, (data)=>{console.log(data)});
+    
+    }
+
+    eventCode = (window.location.pathname + window.location.search).split("/")[2];
+    $(window).on('load', () => {
+        updateFeedback();
+        setInterval(updateFeedback, 2500);
+    })
+
+
+    $('#logoutButton').click(function () {
+        logout(() => {
+            // alert("Succesfully logged out");
+            window.location.href = '/'
+        }, () => {
+            alert("Failed to logout. Please try again")
+        })
+    });
+</script>
+
+</html>
